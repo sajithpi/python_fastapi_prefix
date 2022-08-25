@@ -1,0 +1,13 @@
+from sqlalchemy.orm import declarative_base,
+metadata_obj = MetaData()
+Base = declarative_base(metadata=metadata_obj)
+class PrefixerBase(Base):
+
+    __abstract__ = True
+
+    _the_prefix = 'myprefix'
+
+    @declared_attr
+    def __tablename__(cls):
+        
+        return cls._the_prefix + cls.__incomplete_tablename__
